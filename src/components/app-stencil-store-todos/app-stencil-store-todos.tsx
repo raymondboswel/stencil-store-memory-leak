@@ -1,8 +1,7 @@
 import { Component, h } from '@stencil/core';
 import { todosService } from '../../data/api/todos/todos.service';
-//import { userDetailsService } from '../../data/api/users/user-details.service';
+import { userDetailsService } from '../../data/api/users/user-details.service';
 import { energyLevelStore, getTodosRespStore, getUserDetailsRespStore } from '../../data/store/selectors/stencil-store-selectors';
-// import { $$energyLevel, $$getTodosResp, $$getUserDetailsResp } from '../../data/store/selectors/stencil-store-selectors';
 
 import { EnergyLevel } from '../../data/types/energy-level';
 
@@ -14,6 +13,7 @@ export class AppTodos {
 
   initiateRequests() {
     todosService.fetchTodos(energyLevelStore.state.energyLevel);
+    userDetailsService.fetchUser(); // Comment this line for memory leak
   }
 
   connectedCallback() {
